@@ -1,0 +1,76 @@
+﻿@model Ecommerce.Models.detail
+@{
+    ViewBag.Title = "Product";
+}
+
+<div class="content-wrapper">
+    <div class="container">
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="callout" id="callout" style="display:none">
+                        <button type="button" class="close"><span aria-hidden="true">&times;</span></button>
+                        <span class="message"></span>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <img src="@Url.Content("~/Content/Images/"+ViewBag.photo)" width="100%" class="zoom" data-magnify-src="@Url.Content("~/Content/Images/large"+ViewBag.photo)">>
+                            <br><br>
+                            <div class="form-group">
+                                <div class="input-group col-sm-5">
+                                    <span class="input-group-btn">
+                                        <button type="button" id="minus" class="btn btn-default btn-flat btn-lg minus"><i class="fa fa-minus"></i></button>
+                                    </span>
+                                    <input type="text" name="quantity" id="quantity" class="form-control input-lg " value="1">
+                                    <span class="input-group-btn">
+                                        <button type="button" id="add" class="btn btn-default btn-flat btn-lg add">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </span>
+                                    <input type="hidden" value="<?php echo $product['prodid']; ?>" name="id">
+                                </div>
+                                @Html.EditorFor(model=> model.quantity)
+                                <input  type="hidden" name="product_id" value="@ViewBag.productid"/>
+                                <button type="submit" class="btn btn-primary btn-lg btn-flat"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <h1 class="page-header">@ViewBag.prdName</h1>
+                            <h3><b>&#36; @ViewBag.price</b></h3>
+                            <p><b>Category:</b>@ViewBag.category</a></p>
+                            <p><b>Description:</b></p>
+                            <p>@ViewBag.Descrption </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+@section Scripts{
+    <script type="text/javascript">
+        $(function () {
+            $('.add').click(function (e) {
+                console.log("Hello world");
+                e.preventDefault();
+                var quantity = $('#quantity').val();
+                quantity++;
+                $('#quantity').val(quantity);
+            });
+            $('.minus').click(function (e) {
+                e.preventDefault();
+                var quantity = $('#quantity').val();
+                if (quantity > 1) {
+                    quantity--;
+                }
+                $('#quantity').val(quantity);
+            });
+
+        });
+    </script>
+}
+
+
+

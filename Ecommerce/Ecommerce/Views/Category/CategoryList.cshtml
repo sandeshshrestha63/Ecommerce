@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Ecommerce.Models.category>
+@{
+    ViewBag.Title = "CategoryList";
+}
+<div class="content-wrapper">
+    <div class="content-wrapper">
+        <div class="container">
+            <section class="content">
+                @foreach(var item in Model)
+                {
+                    <a href="@Url.Action("ProductList","Product",new { id=item.id})">
+                        <div class="row form-control">
+                            <div class="col-md-12">
+                                @item.name
+                            </div>
+                        </div>
+                    </a>
+                }
+            </section>
+        </div>
+    </div>
+</div>
+

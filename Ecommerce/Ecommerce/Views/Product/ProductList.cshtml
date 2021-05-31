@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Ecommerce.Models.product>
+@{
+    ViewBag.Title = "ProductList";
+}
+<div class="content-wrapper">
+    <div class="container">
+        <section class="content">
+            <div class="row">
+                <div class="col-sm-9">
+                    <h1 class="page-header">Prdlist</h1>
+                    @foreach(var item in Model)
+                    {
+                        <div class="col-sm-4">
+                            <div class="box box-solid">
+                                <div class="box-body prod-body">
+                                    <img src="@Url.Content("~/Content/Images/"+item.photo)" height="230px" width="100%" class="thumbnail"/>
+                                    <h5><a href="@Url.Action("product",new { id= item.id})">@item.name</a></h5>
+                                </div>
+                                <div class="box-footer">
+                                    <b>&#36; @item.price</b>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+        
